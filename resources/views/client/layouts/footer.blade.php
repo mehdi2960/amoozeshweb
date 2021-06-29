@@ -6,7 +6,7 @@
                 <div class="contact col-lg-4 col-md-4 col-sm-12 col-xs-12">
                     <h5>درباره مارکت شاپ</h5>
                     <p>قالب HTML فروشگاهی مارکت شاپ. این یک بلاک مدیریت محتواست. شما میتوانید هر نوع محتوای html نوشتاری یا تصویری را در آن قرار دهید.</p>
-                    <img alt="" src="{{asset('')}}image/logo-small.png">
+                    <img alt="" src="{{asset('/image/logo-small.png')}}">
                 </div>
                 <div class="column col-lg-2 col-md-2 col-sm-3 col-xs-12">
                     <h5>اطلاعات</h5>
@@ -92,13 +92,12 @@
 <!-- Facebook Side Block End -->
 </div>
 <!-- JS Part Start-->
-<script type="text/javascript" src="{{asset('/client/js/jquery-2.1.1.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('/client/js/bootstrap')}}"></script>
-<script type="text/javascript" src="{{asset('/client//js/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('/client/js/jquery.easing-1.3.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('/client/js/jquery.dcjqaccordion.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('/client/js/owl.carousel.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('/client/js/custom.js')}}"></script>
+<script type="text/javascript" src="/client/js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="/client/js/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/client/js/jquery.easing-1.3.min.js"></script>
+<script type="text/javascript" src="/client/js/jquery.dcjqaccordion.min.js"></script>
+<script type="text/javascript" src="/client/js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="/client/js/custom.js"></script>
 <!-- JS Part End-->
 @yield('scripts')
 </body>

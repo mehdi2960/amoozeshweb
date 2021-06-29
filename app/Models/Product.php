@@ -97,4 +97,9 @@ class Product extends Model
         }
         return $this->price - $this->price * $this->discount->value / 100;
     }
+
+    public function comments(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -11,6 +11,8 @@ use App\Http\Controllers\AdminController\PropertyController;
 use App\Http\Controllers\AdminController\PropertyGroupController;
 use App\Http\Controllers\AdminController\RoleController;
 use App\Http\Controllers\AdminController\UserController;
+use App\Http\Controllers\ClientController\CommentController;
+use App\Http\Controllers\AdminController\CommentController as AdminCommentController;
 use App\Http\Controllers\ClientController\ProductController as ClientProductController;
 use App\Http\Controllers\ClientController\IndexController;
 use App\Http\Controllers\ClientController\RegisterController;
@@ -31,6 +33,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('')->group(function (){
     Route::get('/',[IndexController::class,'index'])->name('home');
     Route::get('productDetails/{product}',[ClientProductController::class,'show'])->name('productDetails.show');
+    Route::post('product/{product}/comments/store',[CommentController::class,'store'])->name('product.comments.store');
     Route::get('register',[RegisterController::class,'create'])->name('register');
     Route::post('register/sendmail',[RegisterController::class,'sendMail'])->name('register.sendmail');
     Route::get('register/otp/{user}',[RegisterController::class,'otp'])->name('register.otp');
@@ -48,11 +51,17 @@ Route::prefix('adminPanel')->group(function (){
    Route::resource('product.gallery',GalleryController::class);
    Route::resource('product.discount',DiscountController::class);
    Route::resource('propertyGroup',PropertyGroupController::class);
+
    //ProductProperty
-   Route::get('products/{product}/properties', [ProductPropertyController::class,'create'])->name('product.properties.create');
+   Route::get('products/{product}/properties', [ProductPropertyController::class,'index'])->name('product.properties.index');
+   Route::get('products/{product}/properties/create', [ProductPropertyController::class,'create'])->name('product.properties.create');
    Route::post('products/{product}/properties', [ProductPropertyController::class,'store'])->name('product.properties.store');
 
-   Route::resource('properties', PropertyController::class);
-   Route::resource('role', RoleController::class);
-   Route::resource('user', UserController::class);
+   //Comment
+    Route::get('products/{product}/comments',[AdminCommentController::class,'index'])->name('products.comments.index');
+
+
+    Route::resource('properties', PropertyController::class);
+    Route::resource('role', RoleController::class);
+    Route::resource('user', UserController::class);
 });

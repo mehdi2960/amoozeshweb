@@ -99,6 +99,9 @@
                                 <!-- AddThis Button END -->
                             </div>
                         </div>
+                        @if(session('success'))
+                            <h5 class="alert alert-success">{{session('success')}}</h5>
+                        @endif
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab-description" data-toggle="tab">توضیحات</a></li>
                             <li><a href="#tab-specification" data-toggle="tab">مشخصات</a></li>
@@ -112,79 +115,89 @@
                             </div>
                             <div id="tab-specification" class="tab-pane">
                                 <div id="tab-specification" class="tab-pane">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <td colspan="2"><strong>حافظه</strong></td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>تست 1</td>
-                                            <td>8gb</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <td colspan="2"><strong>پردازشگر</strong></td>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td>تعداد هسته</td>
-                                            <td>1</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
+                                    @foreach($propertyGroups as $propertyGroup)
+                                         <table class="table table-bordered">
+                                             <thead>
+                                             <tr>
+                                                 <td colspan="2"><strong>{{$propertyGroup->title}}</strong></td>
+                                             </tr>
+                                             </thead>
+                                             <tbody>
+                                             @foreach($propertyGroups->properties as $property)
+                                                 <tr>
+                                                     <td>{{$property->title}}</td>
+                                                     <td>{{$property->getValueForProduct($product)}}</td>
+                                                 </tr>
+                                             @endforeach
+                                             </tbody>
+                                         </table>
+                                    @endforeach
                                 </div>
                             </div>
                             <div id="tab-review" class="tab-pane">
                                 <form class="form-horizontal">
                                     <div id="review">
                                         <div>
-                                            <table class="table table-striped table-bordered">
-                                                <tbody>
-                                                <tr>
-                                                    <td style="width: 50%;"><strong><span>هاروی</span></strong></td>
-                                                    <td class="text-right"><span>1395/1/20</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2"><p>ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> </div></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                            <table class="table table-striped table-bordered">
-                                                <tbody>
-                                                <tr>
-                                                    <td style="width: 50%;"><strong><span>اندرسون</span></strong></td>
-                                                    <td class="text-right"><span>1395/1/20</span></td>
-                                                </tr>
-                                                <tr>
-                                                    <td colspan="2"><p>ارائه راهکارها و شرایط سخت تایپ به پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
-                                                        <div class="rating"> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span> </div></td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                            @foreach($product->comments as $comment)
+                                                <table class="table table-striped table-bordered">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="width: 50%;">
+                                                            <strong>
+                                                                <span>{{$comment->user->name}}</span>
+                                                            </strong>
+                                                        </td>
+                                                        <td class="text-right">
+                                                            <span>{{verta()->instance($comment->created_at)->formatDifference()}}</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <p>
+                                                                {{$comment->comments}}
+                                                            </p>
+                                                            <div class="rating"><span class="fa fa-stack"><i
+                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i
+                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i
+                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i
+                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                <span class="fa fa-stack"><i
+                                                                        class="fa fa-star fa-stack-2x"></i><i
+                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            @endforeach
                                         </div>
                                         <div class="text-right"></div>
                                     </div>
-                                    <h2>یک بررسی بنویسید</h2>
-                                    <div class="form-group required">
-                                        <div class="col-sm-12">
-                                            <label for="input-name" class="control-label">نام شما</label>
-                                            <input type="text" class="form-control" id="input-name" value="" name="name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group required">
-                                        <div class="col-sm-12">
-                                            <label for="input-review" class="control-label">بررسی شما</label>
-                                            <textarea class="form-control" id="input-review" rows="5" name="text"></textarea>
-                                            <div class="help-block"><span class="text-danger">توجه :</span> HTML بازگردانی نخواهد شد!</div>
-                                        </div>
-                                    </div>
+                                    @auth
+                                        <h2>یک بررسی بنویسید</h2>
+                                        <form action="{{route('product.comments.store',$product)}}" method="post" class="form-group">
+                                            @csrf
+                                            <div class="form-group required">
+                                                <div class="col-sm-12">
+                                                    <label for="input-review" class="control-label">بررسی شما</label>
+                                                    <textarea class="form-control" id="input-review" rows="5" name="comments"></textarea>
+                                                    <div class="help-block"><span class="text-danger">توجه :</span> HTML بازگردانی نخواهد شد!</div>
+                                                </div>
+                                            </div>
+                                            <input type="submit" value="ثبت نظر" class="btn btn-success"
+                                        </form>
+                                    @else
+                                        <h4 class="alert alert-warning">برای ثبت کامنت ابتدا باید در سایت لاگین کنید.</h4>
+                                        <a href="{{route('register')}}" class="btn btn-success">ورود/ ثبت نام</a>
+                                    @endauth
+
                                     <div class="form-group required">
                                         <div class="col-sm-12">
                                             <label class="control-label">رتبه</label>

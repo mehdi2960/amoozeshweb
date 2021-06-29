@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class ProductPropertyController extends Controller
 {
+    public function index(Product $product)
+    {
+        return view('admin.productProperty.index',compact('product'));
+    }
+
     public function create(Product $product)
     {
         $propertyGroups = $product->category->propertyGroups;
@@ -16,7 +21,12 @@ class ProductPropertyController extends Controller
 
     public function store(Request $request, Product $product)
     {
-        $product->properties()->sync($request->get('properties'));
+        $properties = collect($request->get('properties'))->filter(function ($item) {
+            if (!empty($item['value'])) {
+                return $item;
+            }
+        });
+        $product->properties()->sync($properties);
         return back();
     }
 }
