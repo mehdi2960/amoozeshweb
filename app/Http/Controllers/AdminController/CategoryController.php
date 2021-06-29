@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest\CategoryUpdateRequest;
 use App\Http\Requests\AdminRequest\CreateRequestCategory;
 use App\Models\Category;
+use App\Models\PropertyGroup;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -29,7 +30,8 @@ class CategoryController extends Controller
     {
         $categories = Category::query()->paginate(6); //for categoryList
         $selectCategory = Category::all(); //for selectCategory
-        return view('admin.categories.index',compact('categories','selectCategory'));
+        $propertyGroups=PropertyGroup::all();
+        return view('admin.categories.index',compact('categories','selectCategory','propertyGroups'));
     }
 
     /**
@@ -40,11 +42,12 @@ class CategoryController extends Controller
      */
     public function store(CreateRequestCategory $request)
     {
-        Category::query()->create([
+        $category=Category::query()->create([
             'parent_id'=>$request->get('parent_id'),
             'title_fa'=>$request->get('title_fa'),
             'title_en'=>$request->get('title_en')
         ]);
+        $category->propertyGroups()->attach($request->get('propertyGroups'));
         return back()->with('success', 'دسته با موفقیت افزوده شد');
     }
 
@@ -68,7 +71,8 @@ class CategoryController extends Controller
     public function edit(Category $category)
     {
         $categories=Category::all();
-        return view('admin.categories.edit',compact('category','categories'));
+        $propertyGroups=PropertyGroup::all();
+        return view('admin.categories.edit',compact('category','categories','propertyGroups'));
     }
 
     /**
@@ -93,6 +97,8 @@ class CategoryController extends Controller
             'title_fa' => $request->get('title_fa'),
             'title_en' => $request->get('title_en'),
         ]);
+
+        $category->propertyGroups()->sync($request->get('propertyGroups'));
         return redirect(route('category.create'));
     }
 
@@ -103,8 +109,9 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function destroy(Category $category)
+    public function destroy(Category $category): \Illuminate\Http\Response
     {
+        $category->propertyGroups()->detach();
         $category->delete();
         return back();
     }

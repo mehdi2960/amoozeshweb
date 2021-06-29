@@ -26,4 +26,14 @@ class Category extends Model
         $childrenIds = $this->children()->pluck('id');
         return Product::query()->whereIn('category_id', $childrenIds)->orWhere('category_id',$this->id)->get();
     }
+
+    public function propertyGroups(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(PropertyGroup::class);
+    }
+
+    public function hasPropertyGroup($propertyGroup): bool
+    {
+        return $this->propertyGroups()->where('property_group_id',$propertyGroup->id)->exists();
+    }
 }

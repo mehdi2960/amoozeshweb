@@ -15,4 +15,18 @@ class Property extends Model
     {
         return $this->belongsTo(PropertyGroup::class);
     }
+
+    public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
+        return $this->belongsToMany(Product::class)->withPivot(['value'])->withTimestamps();
+    }
+
+    public function getValueForProduct($product)
+    {
+        $productPropertyQuery=$this->products()->where('product_id',$product->id);
+        if (!$productPropertyQuery->exists()){
+            return null;
+        }
+        return $productPropertyQuery->first()->pivot->value;
+    }
 }

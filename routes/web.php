@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController\DiscountController;
 use App\Http\Controllers\AdminController\GalleryController;
 use App\Http\Controllers\AdminController\PanelController;
 use App\Http\Controllers\AdminController\ProductController;
+use App\Http\Controllers\AdminController\ProductPropertyController;
 use App\Http\Controllers\AdminController\PropertyController;
 use App\Http\Controllers\AdminController\PropertyGroupController;
 use App\Http\Controllers\AdminController\RoleController;
@@ -25,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 //Client
 Route::prefix('')->group(function (){
     Route::get('/',[IndexController::class,'index'])->name('home');
@@ -46,7 +48,11 @@ Route::prefix('adminPanel')->group(function (){
    Route::resource('product.gallery',GalleryController::class);
    Route::resource('product.discount',DiscountController::class);
    Route::resource('propertyGroup',PropertyGroupController::class);
-   Route::resource('properties',PropertyController::class);
-   Route::resource('role',RoleController::class);
-   Route::resource('user',UserController::class);
+   //ProductProperty
+   Route::get('products/{product}/properties', [ProductPropertyController::class,'create'])->name('product.properties.create');
+   Route::post('products/{product}/properties', [ProductPropertyController::class,'store'])->name('product.properties.store');
+
+   Route::resource('properties', PropertyController::class);
+   Route::resource('role', RoleController::class);
+   Route::resource('user', UserController::class);
 });

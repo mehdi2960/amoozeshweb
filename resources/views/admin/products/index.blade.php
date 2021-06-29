@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content padding-0 categories">
         <div class="row no-gutters  ">
-            <div class="col-8 margin-left-10 margin-bottom-15 border-radius-3">
+            <div class="col-12 margin-left-10 margin-bottom-15 border-radius-3">
                 <p class="box__title">محصولات</p>
                 <div class="table__box">
                     <table class="table">
@@ -13,11 +13,12 @@
                             <th>نام </th>
                             <th>اسلاگ</th>
                             <th>تصویر</th>
-                            <th>قیمت </th>
-                            <th>دسته بندی </th>
-                            <th>برند </th>
-                            <th>تاریخ ایجاد </th>
+                            <th>قیمت</th>
+                            <th>دسته بندی</th>
+                            <th>برند</th>
+                            <th>تاریخ ایجاد</th>
                             <th>گالری</th>
+                            <th>ویژگی(مشخصات)</th>
                             <th> تخفیفات</th>
                             <th>ویرایش</th>
                             <th>حذف</th>
@@ -33,11 +34,12 @@
                                 <td><a href="">{{number_format($product->price)}}</a></td>
                                 <td><a href="">{{$product->category->title_fa}}</a></td>
                                 <td><a href="">{{$product->brand->name}}</a></td>
-                                <td><a href="">{{$product->created_at}}</a></td>
+                                <td><a href="">{{verta($product->created_at)->instance()}}</a></td>
                                 <td><a href="{{route('product.gallery.index',$product)}}" class="text-warning">مشاهده</a></td>
+                                <td><a href="{{route('product.properties.create',$product)}}" class="text-center">ویژگی</a></td>
                                 <td>
                                     @if(!$product->discount()->exists())
-                                        <a href="{{route('product.discount.create',$product)}}" class="text-info">تخفیف</a>
+                                        <a href="{{route('product.discount.create',$product)}}" class="text-info">ایجاد تخفیف</a>
                                     @else
                                         {{$product->discount->value}} %
                                         <form action="{{route('product.discount.destroy',['product'=>$product,'discount'=>$product->discount])}}" method="post">

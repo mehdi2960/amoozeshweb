@@ -3,7 +3,7 @@
 @section('content')
     <div class="main-content padding-0 categories">
         <div class="row no-gutters  ">
-            <div class="col-8 margin-left-10 margin-bottom-15 border-radius-3">
+            <div class="col-12 margin-left-10 margin-bottom-15 border-radius-3">
                 <p class="box__title">دسته بندی ها</p>
                 <div class="table__box">
                     <table class="table">

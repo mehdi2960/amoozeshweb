@@ -24,6 +24,17 @@
                     </option>
                 @endforeach
             </select>
+            <div class="form-group">
+                <p class="box__title margin-bottom-15">ویرایش گروه مشخصات</p>
+                <div class="row">
+                    @foreach($propertyGroups as $propertyGroup)
+                        <div class="padding-bottom-10" style="margin-right: 8px;">
+                            <input @if($category->hasPropertyGroup($propertyGroup)) checked @endif type="checkbox" name="propertyGroups[]" value="{{$propertyGroup->id}}">
+                            <b>{{$propertyGroup->title}}</b>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
             <button class="btn btn-brand">ویرایش</button>
         </form>
     </div>
