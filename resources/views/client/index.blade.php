@@ -755,7 +755,7 @@
                     <!-- دسته ها محصولات Slider End-->
                     <!-- دسته ها محصولات Slider Start -->
                     @foreach($categories as $parentCategory)
-                        <h3 class="subtitle">{{$parentCategory->title_fa}} - <a class="viewall" href="category.html">نمایش همه</a></h3>
+                        <h3 class="subtitle">{{$parentCategory->title_fa}} - <a class="viewall" href="">نمایش همه</a></h3>
                         <div class="owl-carousel latest_category_carousel">
                             @foreach($parentCategory->getAllSubCategoryProducts() as $product)
                                 <div class="product-thumb">

@@ -37,7 +37,8 @@ Route::prefix('')->group(function (){
     Route::get('/',[IndexController::class,'index'])->name('home');
     Route::get('productDetails/{product}',[ClientProductController::class,'show'])->name('productDetails.show');
     Route::post('product/{product}/comments/store',[CommentController::class,'store'])->name('product.comments.store');
-    Route::post('like/{product}',[LikeController::class,'store'])->name('like');
+    Route::get('/likes/wishlist',[LikeController::class,'index'])->name('likes.wishlist.index');
+    Route::post('/likes/{product}',[LikeController::class,'store'])->name('likes.store');
 
     //Register
     Route::get('register',[RegisterController::class,'create'])->name('register');

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class Product extends Model
 {
@@ -75,9 +76,19 @@ class Product extends Model
         $discount->delete();
     }
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
-        return 'slug';
+        //return 'slug';
+
+        if (request()->route()->getPrefix() == '/adminPanel' || request()->routeIs(['home','likes.wishlist.index'])) {
+            return 'slug';
+        } else {
+            $identifier = Route::current()->parameters()['product'];
+            if (!ctype_digit($identifier)) {
+                return 'slug';
+            }
+            return 'id';
+        }
     }
 
     public function discount(): \Illuminate\Database\Eloquent\Relations\HasOne
@@ -105,6 +116,11 @@ class Product extends Model
 
     public function likes()
     {
-        return $this->belongsToMany(User::class,'likes')->withTimestamps();
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps();
+    }
+
+    public function getIsLikedAttribute(): bool
+    {
+        return $this->likes()->where('user_id', auth()->id())->exists();
     }
 }

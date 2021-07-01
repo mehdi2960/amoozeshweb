@@ -82,9 +82,15 @@
                                             <button type="button" id="button-cart" class="btn btn-primary btn-lg">افزودن به سبد</button>
                                         </div>
                                         <div>
-                                            <button type="button" class="wishlist" onClick=""><i class="fa fa-heart"></i> افزودن به علاقه مندی ها</button>
+                                            <button id="like-{{$product->id}}" type="button" class="wishlist" onClick="likeProduct({{$product->id}})">
+                                                <i class="fa fa-heart @if($product->is_liked) like @endif"></i>
+                                                افزودن به علاقه مندی ها
+                                            </button>
                                             <br />
-                                            <button type="button" class="wishlist" onClick=""><i class="fa fa-exchange"></i> مقایسه این محصول</button>
+                                            <button type="button" class="wishlist" onClick="">
+                                                <i class="fa fa-exchange"></i>
+                                                مقایسه این محصول
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -351,7 +357,7 @@
                             </div>
                         </div>
                         <div class="product-thumb clearfix">
-                            <div class="image"><a href="product.html"><img src="image/product/FinePix-Long-Zoom-Camera-50x75.jpg" alt="دوربین فاین پیکس" title="دوربین فاین پیکس" class="img-responsive" /></a></div>
+                            <div class="image"><a href="product.html"><img src="{{asset('/image/product/FinePix-Long-Zoom-Camera-50x75.jpg')}}" alt="دوربین فاین پیکس" title="دوربین فاین پیکس" class="img-responsive" /></a></div>
                             <div class="caption">
                                 <h4><a href="product.html">دوربین فاین پیکس</a></h4>
                                 <p class="price">122000 تومان</p>

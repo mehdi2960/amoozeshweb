@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
+    <style>
+        .like{
+            color: red;
+        }
+    </style>
     <meta charset="UTF-8" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -33,7 +38,10 @@
                         <div class="links">
                             <ul>
                                 <li class="mobile"><i class="fa fa-phone"></i>09371282960</li>
-                                <li class="email"><a href="mailto:info@marketshop.com"><i class="fa fa-envelope"></i>info@marketshop.com</a></li>
+                                {{--<li class="email"><a href="mailto:info@marketshop.com"><i class="fa fa-envelope"></i>info@marketshop.com</a></li>--}}
+                                @auth
+                                    <li><a href="{{route('likes.wishlist.index')}}">لیست علاقه مندی ها ({{auth()->user()->likes->count()}})</a></li>
+                                @endauth
                                 <li class="wrap_custom_block hidden-sm hidden-xs"><a>بلاک سفارشی<b></b></a>
                                     <div class="dropdown-menu custom_block">
                                         <ul>
@@ -64,31 +72,31 @@
                                 </li>
                             </ul>
                         </div>
-                        <div id="language" class="btn-group">
-                            <button class="btn-link dropdown-toggle" data-toggle="dropdown"> <span> <img src="{{asset('/client/image/flags/gb.png')}}" alt="انگلیسی" title="انگلیسی">انگلیسی <i class="fa fa-caret-down"></i></span></button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <button class="btn btn-link btn-block language-select" type="button" name="GB"><img src="{{asset('/client/image/flags/gb.png')}}" alt="انگلیسی" title="انگلیسی" /> انگلیسی</button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-link btn-block language-select" type="button" name="GB"><img src="{{asset('/client/image/flags/ar.png')}}" alt="عربی" title="عربی" /> عربی</button>
-                                </li>
-                            </ul>
-                        </div>
-                        <div id="currency" class="btn-group">
-                            <button class="btn-link dropdown-toggle" data-toggle="dropdown"> <span> تومان <i class="fa fa-caret-down"></i></span></button>
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <button class="currency-select btn btn-link btn-block" type="button" name="EUR">€ Euro</button>
-                                </li>
-                                <li>
-                                    <button class="currency-select btn btn-link btn-block" type="button" name="GBP">£ Pound Sterling</button>
-                                </li>
-                                <li>
-                                    <button class="currency-select btn btn-link btn-block" type="button" name="USD">$ USD</button>
-                                </li>
-                            </ul>
-                        </div>
+{{--                        <div id="language" class="btn-group">--}}
+{{--                            <button class="btn-link dropdown-toggle" data-toggle="dropdown"> <span> <img src="{{asset('/client/image/flags/gb.png')}}" alt="انگلیسی" title="انگلیسی">انگلیسی <i class="fa fa-caret-down"></i></span></button>--}}
+{{--                            <ul class="dropdown-menu">--}}
+{{--                                <li>--}}
+{{--                                    <button class="btn btn-link btn-block language-select" type="button" name="GB"><img src="{{asset('/client/image/flags/gb.png')}}" alt="انگلیسی" title="انگلیسی" /> انگلیسی</button>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <button class="btn btn-link btn-block language-select" type="button" name="GB"><img src="{{asset('/client/image/flags/ar.png')}}" alt="عربی" title="عربی" /> عربی</button>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
+{{--                        <div id="currency" class="btn-group">--}}
+{{--                            <button class="btn-link dropdown-toggle" data-toggle="dropdown"> <span> تومان <i class="fa fa-caret-down"></i></span></button>--}}
+{{--                            <ul class="dropdown-menu">--}}
+{{--                                <li>--}}
+{{--                                    <button class="currency-select btn btn-link btn-block" type="button" name="EUR">€ Euro</button>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <button class="currency-select btn btn-link btn-block" type="button" name="GBP">£ Pound Sterling</button>--}}
+{{--                                </li>--}}
+{{--                                <li>--}}
+{{--                                    <button class="currency-select btn btn-link btn-block" type="button" name="USD">$ USD</button>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </div>--}}
                     </div>
                     <div id="top-links" class="nav pull-right flip">
                        @auth
