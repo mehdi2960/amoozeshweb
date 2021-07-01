@@ -38,7 +38,7 @@
                                 <td><a href="">{{verta($product->created_at)->instance()}}</a></td>
                                 <td><a href="{{route('product.gallery.index',$product)}}" class="text-warning">مشاهده</a></td>
                                 <td><a href="{{route('product.properties.index',$product)}}" class="text-center">ویژگی</a></td>
-                                <td><a href="{{route('products.comments.index',$product)}}" class="text-center">نظر</a></td>
+                                <td><a href="{{route('products.comments.index',$product)}}" class="text-warning">نظر</a></td>
                                 <td>
                                     @if(!$product->discount()->exists())
                                         <a href="{{route('product.discount.create',$product)}}" class="text-info">ایجاد تخفیف</a>

@@ -353,8 +353,8 @@
                     <!-- Banner Start -->
                     <div class="marketshop-banner">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><a href="#"><img src="{{asset('image/banner/sample-banner-4-600x250.jpg')}}" alt="2 Block Banner" title="2 Block Banner" /></a></div>
-                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><a href="#"><img src="{{asset('image/banner/sample-banner-5-600x250.jpg')}}" alt="2 Block Banner 1" title="2 Block Banner 1" /></a></div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><a href="#"><img src="{{asset('/image/banner/sample-banner-4-600x250.jpg')}}" alt="2 Block Banner" title="2 Block Banner" /></a></div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><a href="#"><img src="{{asset('/image/banner/sample-banner-5-600x250.jpg')}}" alt="2 Block Banner 1" title="2 Block Banner 1" /></a></div>
                         </div>
                     </div>
                     <!-- Banner End -->

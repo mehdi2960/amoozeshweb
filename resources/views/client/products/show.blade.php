@@ -105,7 +105,7 @@
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#tab-description" data-toggle="tab">توضیحات</a></li>
                             <li><a href="#tab-specification" data-toggle="tab">مشخصات</a></li>
-                            <li><a href="#tab-review" data-toggle="tab">بررسی (2)</a></li>
+                            <li><a href="#tab-review" data-toggle="tab">بررسی{{$product->comments->count()}}</a></li>
                         </ul>
                         <div class="tab-content">
                             <div itemprop="description" id="tab-description" class="tab-pane active">
@@ -138,44 +138,46 @@
                                 <form class="form-horizontal">
                                     <div id="review">
                                         <div>
-                                            @foreach($product->comments as $comment)
-                                                <table class="table table-striped table-bordered">
-                                                    <tbody>
-                                                    <tr>
-                                                        <td style="width: 50%;">
-                                                            <strong>
-                                                                <span>{{$comment->user->name}}</span>
-                                                            </strong>
-                                                        </td>
-                                                        <td class="text-right">
-                                                            <span>{{verta()->instance($comment->created_at)->formatDifference()}}</span>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td colspan="2">
-                                                            <p>
-                                                                {{$comment->comments}}
-                                                            </p>
-                                                            <div class="rating"><span class="fa fa-stack"><i
-                                                                        class="fa fa-star fa-stack-2x"></i><i
-                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                <span class="fa fa-stack"><i
-                                                                        class="fa fa-star fa-stack-2x"></i><i
-                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                <span class="fa fa-stack"><i
-                                                                        class="fa fa-star fa-stack-2x"></i><i
-                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                <span class="fa fa-stack"><i
-                                                                        class="fa fa-star fa-stack-2x"></i><i
-                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
-                                                                <span class="fa fa-stack"><i
-                                                                        class="fa fa-star fa-stack-2x"></i><i
-                                                                        class="fa fa-star-o fa-stack-2x"></i></span>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
+                                            @foreach($product->comments()->latest()->get() as $comment)
+                                                @if($comment->status==1)
+                                                    <table class="table table-striped table-bordered">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td style="width: 50%;">
+                                                                <strong>
+                                                                    <span>{{$comment->user->name}}</span>
+                                                                </strong>
+                                                            </td>
+                                                            <td class="text-right">
+                                                                <span>{{verta()->instance($comment->created_at)->formatDifference()}}</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                <p>
+                                                                    {{$comment->comments}}
+                                                                </p>
+                                                                <div class="rating"><span class="fa fa-stack"><i
+                                                                            class="fa fa-star fa-stack-2x"></i><i
+                                                                            class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                    <span class="fa fa-stack"><i
+                                                                            class="fa fa-star fa-stack-2x"></i><i
+                                                                            class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                    <span class="fa fa-stack"><i
+                                                                            class="fa fa-star fa-stack-2x"></i><i
+                                                                            class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                    <span class="fa fa-stack"><i
+                                                                            class="fa fa-star fa-stack-2x"></i><i
+                                                                            class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                    <span class="fa fa-stack"><i
+                                                                            class="fa fa-star fa-stack-2x"></i><i
+                                                                            class="fa fa-star-o fa-stack-2x"></i></span>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                @endif
                                             @endforeach
                                         </div>
                                         <div class="text-right"></div>

@@ -12,21 +12,29 @@
                             <th>#</th>
                             <th>نام کاربر</th>
                             <th>متن نظر</th>
-                            <th>ویرایش</th>
+                            <th>تایید کامنت</th>
                             <th>حذف</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($product->comments as $comment)
                             <tr role="row" class="">
-                                <td><a href="#">{{$brand->id}}</a></td>
-                                <td><a href="#">{{$brand->name}}</a></td>
-                                <td><a href="#"><img src="{{str_replace('public','/storage',$brand->image)}}" width="50" alt="brand"></a></td>
+                                <td><a href="#">{{$comment->id}}</a></td>
+                                <td><a href="#">{{$comment->user->name}}</a></td>
+                                <td><a href="#">{{$comment->comments}}</a></td>
                                 <td>
-                                    <a href="{{route('brand.edit',$brand->id)}}" class="item-edit " title="ویرایش"></a>
+                                    @if($comment->status==0)
+                                        <form action="{{route('products.comments.update',$comment)}}" method="post">
+                                            @csrf
+                                            @method('patch')
+                                            <input type="submit" value="تایید" class="btn btn-brand">
+                                        </form>
+                                    @else
+                                        <p class="text-success">تایید شده</p>
+                                    @endif
                                 </td>
                                 <td>
-                                    <form action="{{route('brand.destroy',$brand->id)}}" method="post">
+                                    <form action="{{route('products.comments.destroy',$comment)}}" method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button class="item-delete bg-white" type="submit"></button>

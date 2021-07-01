@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController\RoleController;
 use App\Http\Controllers\AdminController\UserController;
 use App\Http\Controllers\ClientController\CommentController;
 use App\Http\Controllers\AdminController\CommentController as AdminCommentController;
+use App\Http\Controllers\ClientController\LikeController;
 use App\Http\Controllers\ClientController\ProductController as ClientProductController;
 use App\Http\Controllers\ClientController\IndexController;
 use App\Http\Controllers\ClientController\RegisterController;
@@ -31,9 +32,14 @@ use Illuminate\Support\Facades\Route;
 
 //Client
 Route::prefix('')->group(function (){
+
+    //Product
     Route::get('/',[IndexController::class,'index'])->name('home');
     Route::get('productDetails/{product}',[ClientProductController::class,'show'])->name('productDetails.show');
     Route::post('product/{product}/comments/store',[CommentController::class,'store'])->name('product.comments.store');
+    Route::post('like/{product}',[LikeController::class,'store'])->name('like');
+
+    //Register
     Route::get('register',[RegisterController::class,'create'])->name('register');
     Route::post('register/sendmail',[RegisterController::class,'sendMail'])->name('register.sendmail');
     Route::get('register/otp/{user}',[RegisterController::class,'otp'])->name('register.otp');
@@ -59,6 +65,9 @@ Route::prefix('adminPanel')->group(function (){
 
    //Comment
     Route::get('products/{product}/comments',[AdminCommentController::class,'index'])->name('products.comments.index');
+    Route::get('comments/{comment}/edit',[AdminCommentController::class,'edit'])->name('products.comments.edit');
+    Route::patch('comments/{comment}/update',[AdminCommentController::class,'update'])->name('products.comments.update');
+    Route::delete('comments/{comment}/destroy',[AdminCommentController::class,'destroy'])->name('products.comments.destroy');
 
 
     Route::resource('properties', PropertyController::class);
