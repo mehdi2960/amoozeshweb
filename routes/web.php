@@ -10,6 +10,7 @@ use App\Http\Controllers\AdminController\ProductPropertyController;
 use App\Http\Controllers\AdminController\PropertyController;
 use App\Http\Controllers\AdminController\PropertyGroupController;
 use App\Http\Controllers\AdminController\RoleController;
+use App\Http\Controllers\AdminController\SliderController;
 use App\Http\Controllers\AdminController\UserController;
 use App\Http\Controllers\ClientController\CommentController;
 use App\Http\Controllers\AdminController\CommentController as AdminCommentController;
@@ -39,6 +40,7 @@ Route::prefix('')->group(function (){
     Route::post('product/{product}/comments/store',[CommentController::class,'store'])->name('product.comments.store');
     Route::get('/likes/wishlist',[LikeController::class,'index'])->name('likes.wishlist.index');
     Route::post('/likes/{product}',[LikeController::class,'store'])->name('likes.store');
+    Route::delete('/likes/{product}',[LikeController::class,'destroy'])->name('likes.destroy');
 
     //Register
     Route::get('register',[RegisterController::class,'create'])->name('register');
@@ -58,6 +60,7 @@ Route::prefix('adminPanel')->group(function (){
    Route::resource('product.gallery',GalleryController::class);
    Route::resource('product.discount',DiscountController::class);
    Route::resource('propertyGroup',PropertyGroupController::class);
+   Route::resource('slider',SliderController::class);
 
    //ProductProperty
    Route::get('products/{product}/properties', [ProductPropertyController::class,'index'])->name('product.properties.index');

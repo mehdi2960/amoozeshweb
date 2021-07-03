@@ -7,8 +7,13 @@
                 <div id="content" class="col-xs-12">
                     <!-- Slideshow Start-->
                     <div class="slideshow single-slider owl-carousel">
-                        <div class="item"> <a href="#"><img class="img-responsive" src="{{asset('/client/image/slider/banner-2.jpg')}}" alt="banner 2" /></a> </div>
-                        <div class="item"> <a href="#"><img class="img-responsive" src="{{asset('/client/image/slider/banner-1.jpg')}}" alt="banner 1" /></a> </div>
+                        @foreach($sliders as $slider)
+                            <div class="item">
+                                <a href="{{$slider->link}}">
+                                    <img style="width: 100% !important; height: 330px!important;" class="img-responsive" src="{{str_replace('public','/storage',$slider->image)}}" alt="banner 2"/>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
                     <!-- Slideshow End-->
                     <!-- Banner Start-->
@@ -780,8 +785,12 @@
                                     <div class="button-group">
                                         <button class="btn-primary" type="button" onClick=""><span>افزودن به سبد</span></button>
                                         <div class="add-to-links">
-                                            <button type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick=""><i class="fa fa-heart"></i></button>
-                                            <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick=""><i class="fa fa-exchange"></i></button>
+                                            <button id="like-{{$product->id}}" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick="likeProduct({{$product->id}})">
+                                                <i class="fa fa-heart" @if($product->is_liked) like @endif></i>
+                                            </button>
+                                            <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick="">
+                                                <i class="fa fa-exchange"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

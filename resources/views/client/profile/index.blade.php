@@ -44,8 +44,15 @@
                                 <div class="price"> {{number_format($wishlist->price)}} تومان</div>
                             </td>
                             <td class="text-right">
-                                <button class="btn btn-primary" title="" data-toggle="tooltip" onclick="cart.add('48');" type="button" data-original-title="افزودن به سبد"><i class="fa fa-shopping-cart"></i></button>
-                                <a class="btn btn-danger" title="" data-toggle="tooltip" href="http://localhost/2.2.0.0-compiled/index.php?route=account/wishlist&amp;remove=48" data-original-title="حذف"><i class="fa fa-times"></i></a></td>
+                                <button class="btn btn-primary" title="" data-toggle="tooltip" onclick="cart.add('48');" type="button" data-original-title="افزودن به سبد">
+                                    <i class="fa fa-shopping-cart"></i>
+                                </button>
+                                <form action="{{route('likes.destroy',$wishlist)}}" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></button>
+                                </form>
+                            </td>
                         </tr>
                         @endforeach
                         </tbody>

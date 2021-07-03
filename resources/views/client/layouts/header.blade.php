@@ -40,7 +40,7 @@
                                 <li class="mobile"><i class="fa fa-phone"></i>09371282960</li>
                                 {{--<li class="email"><a href="mailto:info@marketshop.com"><i class="fa fa-envelope"></i>info@marketshop.com</a></li>--}}
                                 @auth
-                                    <li><a href="{{route('likes.wishlist.index')}}">لیست علاقه مندی ها ({{auth()->user()->likes->count()}})</a></li>
+                                    <li><a href="{{route('likes.wishlist.index')}}">لیست علاقه مندی ها (<span id="likes_count">{{auth()->user()->likes->count()}}</span>)</a></li>
                                 @endauth
                                 <li class="wrap_custom_block hidden-sm hidden-xs"><a>بلاک سفارشی<b></b></a>
                                     <div class="dropdown-menu custom_block">

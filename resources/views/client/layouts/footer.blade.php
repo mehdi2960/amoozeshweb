@@ -113,6 +113,7 @@
                 } else {
                     icon.addClass('like')
                 }
+                $('#likes_count').text(data.likes_count);
             }
         });
     }
