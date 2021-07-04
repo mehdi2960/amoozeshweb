@@ -14,6 +14,7 @@
         {{--        <li class="item-li i-courses "><a href="courses.html">دوره ها</a></li>--}}
         <li class="item-li i-users @if(request()->routeIs('user.create')) is-active @endif"><a href="{{route('user.create')}}">کاربران</a></li>
         <li class="item-li i-categories @if(request()->routeIs('category.create')) is-active @endif"><a href="{{route('category.create')}}">دسته بندی ها</a></li>
+        <li class="item-li i-categories @if(request()->routeIs('featureCategory.create')) is-active @endif"><a href="{{route('featureCategory.create')}}">ایجاد دسته بندی ویژه</a></li>
         <li class="item-li i-categories @if(request()->routeIs('brand.create')) is-active @endif"><a href="{{route('brand.create')}}"> برند ها</a></li>
         <li class="item-li i-categories @if(request()->routeIs('product.create')) is-active @endif"><a href="{{route('product.create')}}">محصولات</a></li>
         <li class="item-li i-categories @if(request()->routeIs('slider.create')) is-active @endif"><a href="{{route('slider.create')}}">اسلایدر</a></li>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController\BrandController;
 use App\Http\Controllers\AdminController\CategoryController;
 use App\Http\Controllers\AdminController\DiscountController;
+use App\Http\Controllers\AdminController\FeaturedCategoryController;
 use App\Http\Controllers\AdminController\GalleryController;
 use App\Http\Controllers\AdminController\PanelController;
 use App\Http\Controllers\AdminController\ProductController;
@@ -66,6 +67,7 @@ Route::prefix('adminPanel')->group(function (){
    Route::get('products/{product}/properties', [ProductPropertyController::class,'index'])->name('product.properties.index');
    Route::get('products/{product}/properties/create', [ProductPropertyController::class,'create'])->name('product.properties.create');
    Route::post('products/{product}/properties', [ProductPropertyController::class,'store'])->name('product.properties.store');
+   Route::resource('properties', PropertyController::class);
 
    //Comment
     Route::get('products/{product}/comments',[AdminCommentController::class,'index'])->name('products.comments.index');
@@ -73,8 +75,11 @@ Route::prefix('adminPanel')->group(function (){
     Route::patch('comments/{comment}/update',[AdminCommentController::class,'update'])->name('products.comments.update');
     Route::delete('comments/{comment}/destroy',[AdminCommentController::class,'destroy'])->name('products.comments.destroy');
 
-
-    Route::resource('properties', PropertyController::class);
+    //Role
     Route::resource('role', RoleController::class);
     Route::resource('user', UserController::class);
+
+    //featureCategory
+    Route::get('/featureCategory/create',[FeaturedCategoryController::class,'create'])->name('featureCategory.create');
+    Route::post('/featureCategory/store',[FeaturedCategoryController::class,'store'])->name('featureCategory.store');
 });

@@ -10,4 +10,13 @@ class FeaturedCategory extends Model
     use HasFactory;
 
     public $incrementing = false;
+
+    protected $primaryKey = 'category_id';
+
+    protected $guarded = [];
+
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
