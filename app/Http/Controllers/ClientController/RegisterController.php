@@ -24,28 +24,10 @@ class RegisterController extends Controller
 
     public function sendMail(Request $request)
     {
-        $request->validate([
+        $this->validate($request, [
             'email' => 'required|email',
         ]);
-
-        $otp = random_int(11111, 99999);
-
-        $userQuery = User::query()->where('email', $request->get('email'))->first();
-
-        if ($userQuery) {
-            $user = $userQuery;
-            $user->update([
-                'password' => bcrypt($otp),
-            ]);
-        } else {
-            $user = User::query()->create([
-                'email' => $request->get('email'),
-                'password' => bcrypt($otp),
-                'role_id' => Role::findByTitle('normal-user')->id,
-            ]);
-        }
-
-        Mail::to($user->email)->send(new OtpMail($otp));
+        $user = User::generateOtp($request);
 
         return redirect(route('register.otp', $user));
     }
