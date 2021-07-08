@@ -98,6 +98,7 @@
 <script type="text/javascript" src="/client/js/jquery.dcjqaccordion.min.js"></script>
 <script type="text/javascript" src="/client/js/owl.carousel.min.js"></script>
 <script type="text/javascript" src="/client/js/custom.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     function likeProduct(productId) {
         $.ajax({
@@ -118,7 +119,7 @@
         });
     }
 </script>
-
+@include('sweet::alert')
 @yield('scripts')
 <!-- JS Part End-->
 </body>

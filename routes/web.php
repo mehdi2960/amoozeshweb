@@ -15,6 +15,7 @@ use App\Http\Controllers\AdminController\SliderController;
 use App\Http\Controllers\AdminController\UserController;
 use App\Http\Controllers\ClientController\CommentController;
 use App\Http\Controllers\AdminController\CommentController as AdminCommentController;
+use App\Http\Controllers\ClientController\CompareController;
 use App\Http\Controllers\ClientController\LikeController;
 use App\Http\Controllers\ClientController\ProductController as ClientProductController;
 use App\Http\Controllers\ClientController\IndexController;
@@ -42,6 +43,11 @@ Route::prefix('')->name('client.')->group(function (){
     Route::get('/likes/wishlist',[LikeController::class,'index'])->name('likes.wishlist.index');
     Route::post('/likes/{product}',[LikeController::class,'store'])->name('likes.store');
     Route::delete('/likes/{product}',[LikeController::class,'destroy'])->name('likes.destroy');
+
+    //Compare
+    Route::get('/compare',[CompareController::class,'index'])->name('compare.index');
+    Route::get('/add-to-compare/{product}',[CompareController::class,'add'])->name('compare.add');
+    Route::get('/remove-to-compare/{product}',[CompareController::class,'remove'])->name('compare.remove');
 
     //Register
     Route::get('register',[RegisterController::class,'create'])->name('register');

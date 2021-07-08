@@ -1,4 +1,5 @@
 @extends('client.layouts.app')
+
 @section('content')
     <div id="container">
         <div class="container">
@@ -788,9 +789,9 @@
                                             <button id="like-{{$product->id}}" type="button" data-toggle="tooltip" title="افزودن به علاقه مندی" onClick="likeProduct({{$product->id}})">
                                                 <i class="fa fa-heart" @if($product->is_liked) like @endif></i>
                                             </button>
-                                            <button type="button" data-toggle="tooltip" title="افزودن به مقایسه" onClick="">
+                                            <a href="{{route('client.compare.add',['product'=>$product->id])}}" data-toggle="tooltip" title="افزودن به مقایسه">
                                                 <i class="fa fa-exchange"></i>
-                                            </button>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
