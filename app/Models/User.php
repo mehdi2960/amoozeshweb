@@ -71,7 +71,7 @@ class User extends Authenticatable
         return $user;
     }
 
-    public function products()
+    public function products(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
     {
         return $this->belongsToMany(Product::class,'likes')->withTimestamps();
     }

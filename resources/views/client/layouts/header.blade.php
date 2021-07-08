@@ -107,7 +107,7 @@
                             </form>
                         @else
                             <ul>
-                                <li><a href="{{route('register')}}">ورود / ثبت نام</a></li>
+                                <li><a href="{{route('client.register')}}">ورود / ثبت نام</a></li>
                             </ul>
                         @endauth
                     </div>

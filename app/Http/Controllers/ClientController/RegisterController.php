@@ -19,7 +19,6 @@ class RegisterController extends Controller
         $categories = Category::all();
         $brands = Brand::all();
         return view('client.register.create', compact('categories', 'brands'));
-
     }
 
     public function sendMail(Request $request)
@@ -39,14 +38,13 @@ class RegisterController extends Controller
 
     public function verifyOtp(Request $request, User $user)
     {
-        $request->validate([
-            'otp' => 'required|max:5|min:5|lte:99999|gte:11111',
+        $this->validate($request,[
+            'otp' => 'required|max:5|min:5|lte:99999|gte:11111'
         ]);
 
-        if (!Hash::check($request->get('otp'), $user->password)) {
+        if (!Hash::check($request->get('otp'),$user->password)) {
             return back()->withErrors(['otp' => 'کد وارد شده صحیح نیست!!']);
         }
-
         auth()->login($user);
         return redirect(route('home'));
     }

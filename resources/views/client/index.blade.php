@@ -765,13 +765,13 @@
                             @foreach($parentCategory->getAllSubCategoryProducts() as $product)
                                 <div class="product-thumb">
                                     <div class="image" style="background: #fff !important;">
-                                        <a href="{{route('productDetails.show',$product)}}">
+                                        <a href="{{route('client.productDetails.show',$product->id)}}">
                                             <img src="{{str_replace('public','storage',$product->image)}}" alt="{{$product->name}}" title="{{$product->name}}" class="img-responsive" />
                                         </a>
                                     </div>
                                     <div class="caption">
                                         <h4>
-                                            <a href="{{route('productDetails.show',$product)}}">{{$product->name}}</a>
+                                            <a href="{{route('client.productDetails.show',$product->id)}}">{{$product->name}}</a>
                                         </h4>
                                         <p class="price">
                                             <span class="price-new">{{number_format($product->priceWithDiscount())}}تومان</span>

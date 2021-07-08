@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Client
-Route::prefix('')->group(function (){
+Route::prefix('')->name('client.')->group(function (){
 
     //Product
     Route::get('/',[IndexController::class,'index'])->name('home');

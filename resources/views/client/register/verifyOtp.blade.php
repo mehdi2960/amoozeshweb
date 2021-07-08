@@ -5,14 +5,14 @@
         <!-- Breadcrumb Start-->
         <ul class="breadcrumb">
             <li><a href="{{route('home')}}"><i class="fa fa-home"></i></a></li>
-            {{--            <li><a href="{{route('login')}}">حساب کاربری</a></li>--}}
+            {{--<li><a href="{{route('login')}}">حساب کاربری</a></li>--}}
             <li><a href="{{route('register')}}">ثبت نام</a></li>
         </ul>
         <!-- Breadcrumb End-->
         <div class="row">
             <div class="col-sm-9" id="content">
                 <h1 class="title">تایید حساب کاربری</h1>
-                <p>اگر قبلا حساب کاربریتان را ایجاد کرد اید جهت ورود به <a href="login.html">صفحه لاگین</a> مراجعه کنید.</p>
+                <p>اگر قبلا حساب کاربریتان را ایجاد کرد اید جهت ورود به <a href="">صفحه لاگین</a> مراجعه کنید.</p>
 
                 <form class="form-horizontal" method="post" action="{{route('register.verifyOtp',$user)}}">
                     @csrf

@@ -203,7 +203,7 @@
                                         </form>
                                     @else
                                         <h4 class="alert alert-warning">برای ثبت کامنت ابتدا باید در سایت لاگین کنید.</h4>
-                                        <a href="{{route('register')}}" class="btn btn-success">ورود/ ثبت نام</a>
+                                        <a href="{{route('client.register')}}" class="btn btn-success">ورود/ ثبت نام</a>
                                     @endauth
 
                                     <div class="form-group required">
