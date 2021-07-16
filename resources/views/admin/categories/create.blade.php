@@ -1,5 +1,7 @@
 <div class="col-12 bg-white">
     <p class="box__title">ایجاد دسته بندی جدید</p>
+    @include('admin.layouts.notification')
+
     @include('admin.layouts.errors')
     <form action="{{route('category.store')}}" method="post" class="padding-30">
         @csrf

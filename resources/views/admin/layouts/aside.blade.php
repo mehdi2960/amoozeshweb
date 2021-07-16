@@ -17,6 +17,7 @@
         <li class="item-li i-categories @if(request()->routeIs('featureCategory.create')) is-active @endif"><a href="{{route('featureCategory.create')}}">ایجاد دسته بندی ویژه</a></li>
         <li class="item-li i-categories @if(request()->routeIs('brand.create')) is-active @endif"><a href="{{route('brand.create')}}"> برند ها</a></li>
         <li class="item-li i-categories @if(request()->routeIs('product.create')) is-active @endif"><a href="{{route('product.create')}}">محصولات</a></li>
+        <li class="item-li i-categories @if(request()->routeIs('offer.create')) is-active @endif"><a href="{{route('offer.create')}}">تخفیف ها</a></li>
         <li class="item-li i-categories @if(request()->routeIs('slider.create')) is-active @endif"><a href="{{route('slider.create')}}">اسلایدر</a></li>
         <li class="item-li i-categories @if(request()->routeIs('propertyGroup.create')) is-active @endif"><a href="{{route('propertyGroup.create')}}">گروه مشخصات</a></li>
         <li class="item-li i-categories @if(request()->routeIs('properties.create')) is-active @endif"><a href="{{route('properties.create')}}">مشخصات</a></li>

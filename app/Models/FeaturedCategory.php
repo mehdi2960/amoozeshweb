@@ -15,8 +15,13 @@ class FeaturedCategory extends Model
 
     protected $guarded = [];
 
-    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public static function getCategory ()
+    {
+       return FeaturedCategory::query()->first()->category;
     }
 }

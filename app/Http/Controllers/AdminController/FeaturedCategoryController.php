@@ -27,7 +27,8 @@ class FeaturedCategoryController extends Controller
     public function create()
     {
         $categories = Category::query()->where('parent_id', null)->get();
-        return view('admin.featureCategory.create', compact('categories'));
+        $featuredCategory=FeaturedCategory::query()->first();
+        return view('admin.featureCategory.create', compact('categories','featuredCategory'));
     }
 
     /**
@@ -39,7 +40,7 @@ class FeaturedCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'parent_id'=>'required|exists:categories_id',
+            'parent_id'=>'required|exists:categories,id',
         ]);
         FeaturedCategory::query()->delete();
         FeaturedCategory::query()->create([

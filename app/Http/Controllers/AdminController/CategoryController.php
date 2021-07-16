@@ -38,7 +38,7 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(CreateRequestCategory $request)
     {
@@ -48,7 +48,8 @@ class CategoryController extends Controller
             'title_en'=>$request->get('title_en')
         ]);
         $category->propertyGroups()->attach($request->get('propertyGroups'));
-        return back()->with('success', 'دسته با موفقیت افزوده شد');
+        session()->flash('success','دسته مورد نطر با موفقیت ایجاد شد.');
+        return back();
     }
 
     /**
@@ -106,10 +107,10 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param Category $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy(Category $category): \Illuminate\Http\Response
+    public function destroy(Category $category): \Illuminate\Http\RedirectResponse
     {
         $category->propertyGroups()->detach();
         $category->delete();

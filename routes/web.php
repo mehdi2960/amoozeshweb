@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController\CategoryController;
 use App\Http\Controllers\AdminController\DiscountController;
 use App\Http\Controllers\AdminController\FeaturedCategoryController;
 use App\Http\Controllers\AdminController\GalleryController;
+use App\Http\Controllers\AdminController\OfferController;
 use App\Http\Controllers\AdminController\PanelController;
 use App\Http\Controllers\AdminController\ProductController;
 use App\Http\Controllers\AdminController\ProductPropertyController;
@@ -68,6 +69,7 @@ Route::prefix('adminPanel')->group(function (){
    Route::resource('product.discount',DiscountController::class);
    Route::resource('propertyGroup',PropertyGroupController::class);
    Route::resource('slider',SliderController::class);
+   Route::resource('offer',OfferController::class);
 
    //ProductProperty
    Route::get('products/{product}/properties', [ProductPropertyController::class,'index'])->name('product.properties.index');

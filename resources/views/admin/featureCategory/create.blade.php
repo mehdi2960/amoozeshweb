@@ -8,12 +8,13 @@
             @csrf
             <p class="box__title margin-bottom-15">انتخاب دسته ویژه</p>
             <select name="parent_id">
-                <option value selected>..انتخاب دسته ویژه..</option>
+                <option disabled value>...انتخاب دسته ویژه...</option>
                 @foreach($categories as $parent)
-                    <option value="{{$parent->id}}">{{$parent->title_fa}}</option>
+                    <option @if($featuredCategory->category_id == $parent->id) selected @endif value="{{$parent->id}}">{{$parent->title_fa}}</option>
                 @endforeach
             </select>
             <button class="btn btn-brand">اضافه کردن</button>
         </form>
     </div>
 @endsection
+

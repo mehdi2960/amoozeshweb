@@ -21,6 +21,11 @@ class Category extends Model
         return $this->hasMany(Category::class, 'parent_id');
     }
 
+    public function products(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
     public function getAllSubCategoryProducts()
     {
         $childrenIds = $this->children()->pluck('id');
