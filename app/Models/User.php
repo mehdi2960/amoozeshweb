@@ -50,6 +50,11 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
+    public function likes()
+    {
+        return $this->belongsToMany(Product::class,'likes')->withTimestamps();
+    }
+
     public static function generateOtp(Request $request)
     {
         $otp = random_int(11111, 99999);

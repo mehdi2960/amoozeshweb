@@ -13,10 +13,8 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $categories=Category::query()->where('parent_id',null)->get();
-        $brands=Brand::all();
         $sliders=Slider::all();
         $featuredCategory=FeaturedCategory::getCategory();
-        return view('client.index',compact('categories','brands','sliders','featuredCategory'));
+        return view('client.index',compact('sliders','featuredCategory'));
     }
 }

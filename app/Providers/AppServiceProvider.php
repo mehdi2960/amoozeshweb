@@ -25,11 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        view()->composer(['client.index', 'client.products.show'], function ($view) {
-//            $view->with([
-//                $categories = Category::query()->where('parent_id', null)->get(),
-//                $brands = Brand::all(),
-//            ]);
-//        });
+        view()->composer(['client.*'], function ($view) {
+            $view->with([
+                'categories' => Category::query()->where('parent_id', null)->get(),
+                'brands' => Brand::all(),
+            ]);
+        });
     }
 }

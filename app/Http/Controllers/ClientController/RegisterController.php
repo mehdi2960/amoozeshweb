@@ -16,9 +16,7 @@ class RegisterController extends Controller
 {
     public function create()
     {
-        $categories = Category::all();
-        $brands = Brand::all();
-        return view('client.register.create', compact('categories', 'brands'));
+        return view('client.register.create');
     }
 
     public function sendMail(Request $request)
@@ -27,13 +25,14 @@ class RegisterController extends Controller
             'email' => 'required|email',
         ]);
         $user = User::generateOtp($request);
-
-        return redirect(route('register.otp', $user));
+        return redirect(route('client.register.otp',$user));
     }
 
     public function otp(User $user)
     {
-        return view('client.register.verifyOtp', compact('user'));
+        return view('client.register.verifyOtp',[
+            'user' => $user,
+        ]);
     }
 
     public function verifyOtp(Request $request, User $user)
@@ -46,12 +45,12 @@ class RegisterController extends Controller
             return back()->withErrors(['otp' => 'کد وارد شده صحیح نیست!!']);
         }
         auth()->login($user);
-        return redirect(route('home'));
+        return redirect(route('client.home'));
     }
 
     public function logout()
     {
         auth()->logout();
-        return redirect(route('home'));
+        return redirect(route('client.home'));
     }
 }

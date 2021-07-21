@@ -190,7 +190,7 @@
                                     </div>
                                     @auth
                                         <h2>یک بررسی بنویسید</h2>
-                                        <form action="{{route('product.comments.store',$product)}}" method="post" class="form-group">
+                                        <form action="{{route('client.product.comments.store',$product)}}" method="post" class="form-group">
                                             @csrf
                                             <div class="form-group required">
                                                 <div class="col-sm-12">
