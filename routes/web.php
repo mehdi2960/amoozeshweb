@@ -51,11 +51,11 @@ Route::prefix('')->name('client.')->group(function (){
     Route::get('/remove-to-compare/{product}',[CompareController::class,'remove'])->name('compare.remove');
 
     //Register
-    Route::get('register',[RegisterController::class,'create'])->name('register');
-    Route::post('register/sendmail',[RegisterController::class,'sendMail'])->name('register.sendmail');
-    Route::get('register/otp/{user}',[RegisterController::class,'otp'])->name('register.otp');
-    Route::post('register/verifyOtp/{user}',[RegisterController::class,'verifyOtp'])->name('register.verifyOtp');
-    Route::delete('logout',[RegisterController::class,'logout'])->name('logout');
+    Route::get('register', [RegisterController::class, 'create'])->name('register');
+    Route::post('register/sendmail', [RegisterController::class, 'sendMail'])->name('register.sendmail');
+    Route::get('register/otp/{user}', [RegisterController::class, 'otp'])->name('register.otp');
+    Route::post('register/verifyOtp/{user}', [RegisterController::class, 'verifyOtp'])->name('register.verifyOtp');
+    Route::delete('logout', [RegisterController::class, 'logout'])->name('logout');
 
 });
 

@@ -99,17 +99,17 @@
 {{--                        </div>--}}
                     </div>
                     <div id="top-links" class="nav pull-right flip">
-                       @auth
-                            <form action="{{route('client.logout')}}" method="post">
-                                @csrf
-                                @method('delete')
-                                <input type="submit" class="btn btn-sm btn-danger">
-                            </form>
-                        @else
-                            <ul>
-                                <li><a href="{{route('client.register')}}">ورود / ثبت نام</a></li>
-                            </ul>
-                        @endauth
+                           @auth
+                               <form action="{{route('client.logout')}}" method="post">
+                                   @csrf
+                                   @method('delete')
+                                   <input type="submit" name="logout" value="خروج" class="btn btn-sm btn-danger">
+                               </form>
+                           @else
+                               <ul>
+                                   <li><a href="{{route('client.register')}}">ورود/ثبت نام</a></li>
+                               </ul>
+                           @endauth
                     </div>
                 </div>
             </div>
